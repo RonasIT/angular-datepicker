@@ -66,8 +66,7 @@ export class DayTimeCalendarComponent implements OnInit, OnChanges, ControlValue
   set selected(selected: Moment) {
     this._selected = selected;
     this.onChangeCallback(this.processOnChangeCallback(selected));
-  }
-  ;
+  };
 
   @Input() config: IDayTimeCalendarConfig;
   @Input() displayDate: SingleCalendarValue;
