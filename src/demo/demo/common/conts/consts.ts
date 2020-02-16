@@ -1,4 +1,4 @@
-import {ECalendarValue, IDatePickerConfig} from '../../../../lib';
+import {ECalendarValue, IDatePickerConfig} from '../../../../../lib';
 import * as moment from 'moment';
 
 export const DEF_CONF: IDatePickerConfig = {
@@ -38,5 +38,6 @@ export const DEF_CONF: IDatePickerConfig = {
   returnedValueType: ECalendarValue.String,
   unSelectOnClick: true,
   hideOnOutsideClick: true,
-  numOfMonthRows: 3
+  numOfMonthRows: 3,
+  calendarModeDisplayFirst: 'day'
 };
