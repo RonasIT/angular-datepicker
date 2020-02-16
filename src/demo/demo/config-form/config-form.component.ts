@@ -32,6 +32,7 @@ const DAY_PICKER_DIRECTIVE_OPTION_KEYS = [
   'closeOnSelect',
   'closeOnSelectDelay',
   'showGoToCurrent',
+  'calendarModeDisplayFirst',
   'moveCalendarTo',
   ...PICKER_OPTION_KEYS
 ];
@@ -76,6 +77,7 @@ const DAY_CALENDAR_OPTION_KEYS = [
   'showGoToCurrent',
   'unSelectOnClick',
   'moveCalendarTo',
+  'calendarModeDisplayFirst',
   ...MONTH_CALENDAR_OPTION_KEYS
 ];
 const TIME_SELECT_SHARED_OPTION_KEYS = [
@@ -147,6 +149,7 @@ export class ConfigFormComponent implements OnInit {
       value: ECalendarValue.StringArr
     }
   ];
+  readonly calendarModes = ['day', 'month', 'daytime', 'time'];
 
   localFormat: string;
 
@@ -181,6 +184,7 @@ export class ConfigFormComponent implements OnInit {
   format: FormControl;
   locale: FormControl;
   firstDayOfWeek: FormControl;
+  calendarModeDisplayFirst: FormControl;
   monthFormat: FormControl;
   min: FormControl;
   max: FormControl;
@@ -226,6 +230,7 @@ export class ConfigFormComponent implements OnInit {
     this.format = new FormControl(this.getDefaultFormatByMode(this.pickerMode));
     this.locale = new FormControl(this.config.locale);
     this.firstDayOfWeek = new FormControl(this.config.firstDayOfWeek);
+    this.calendarModeDisplayFirst = new FormControl(this.config.calendarModeDisplayFirst);
     this.monthFormat = new FormControl(this.config.monthFormat);
     this.min = new FormControl(this.config.min);
     this.max = new FormControl(this.config.max);
@@ -379,6 +384,12 @@ export class ConfigFormComponent implements OnInit {
     this.firstDayOfWeek.valueChanges.subscribe((val) => {
       this.onConfigChange.emit({
         firstDayOfWeek: val
+      });
+    });
+
+    this.calendarModeDisplayFirst.valueChanges.subscribe((val) => {
+      this.onConfigChange.emit({
+        calendarModeDisplayFirst: val
       });
     });
 

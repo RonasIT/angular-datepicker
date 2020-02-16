@@ -42,6 +42,7 @@ const DAY_PICKER_DIRECTIVE_OPTION_KEYS = [
   'closeOnSelectDelay',
   'showGoToCurrent',
   'moveCalendarTo',
+  'calendarModeDisplayFirst',
   ...PICKER_OPTION_KEYS
 ];
 const DAY_PICKER_OPTION_KEYS = [
@@ -85,6 +86,7 @@ const DAY_CALENDAR_OPTION_KEYS = [
   'showGoToCurrent',
   'unSelectOnClick',
   'moveCalendarTo',
+  'calendarModeDisplayFirst',
   ...MONTH_CALENDAR_OPTION_KEYS
 ];
 const TIME_SELECT_SHARED_OPTION_KEYS = [

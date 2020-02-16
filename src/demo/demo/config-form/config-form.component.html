@@ -172,6 +172,18 @@
       </div>
     </div>
 
+    <div *ngIf="isValidConfig('calendarModeDisplayFirst')" class="dp-option">
+        <span class="dp-option-header">
+          Calendar mode displayed first (calendarModeDisplayFirst):
+        </span>
+      <div class="dp-option-playground">
+        <select id="calendarModeDisplayFirst"
+                [formControl]="calendarModeDisplayFirst">
+          <option *ngFor="let calendarMode of calendarModes" [value]="calendarMode">{{calendarMode}}</option>
+        </select>
+      </div>
+    </div>
+
     <div *ngIf="isValidConfig('format')" class="dp-option">
         <span class="dp-option-header">
           Date Format (format):

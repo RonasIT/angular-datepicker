@@ -36,5 +36,6 @@ export const DEF_CONF: IDatePickerConfig = {
   hideInputContainer: false,
   returnedValueType: ECalendarValue.String,
   unSelectOnClick: true,
-  hideOnOutsideClick: true
+  hideOnOutsideClick: true,
+  calendarModeDisplayFirst: 'day'
 };
