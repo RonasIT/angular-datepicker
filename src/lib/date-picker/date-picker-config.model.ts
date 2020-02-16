@@ -2,6 +2,7 @@ import {TDrops, TOpens} from '../common/types/poistions.type';
 import {IDayCalendarConfig, IDayCalendarConfigInternal} from '../day-calendar/day-calendar-config.model';
 import {IMonthCalendarConfig, IMonthCalendarConfigInternal} from '../month-calendar/month-calendar-config';
 import {ITimeSelectConfig, ITimeSelectConfigInternal} from '../time-select/time-select-config.model';
+import {CalendarMode} from '../common/types/calendar-mode';
 
 export interface IConfig {
   closeOnSelect?: boolean;

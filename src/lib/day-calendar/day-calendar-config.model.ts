@@ -30,6 +30,7 @@ export interface IConfig {
   showGoToCurrent?: boolean;
   unSelectOnClick?: boolean;
   numOfMonthRows?: number;
+  calendarModeDisplayFirst?: CalendarMode;
 }
 
 export interface IDayCalendarConfig extends IConfig,

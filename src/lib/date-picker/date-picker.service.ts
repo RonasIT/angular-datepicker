@@ -83,8 +83,7 @@ export class DatePickerService {
       locale: pickerConfig.locale,
       returnedValueType: pickerConfig.returnedValueType,
       showGoToCurrent: pickerConfig.showGoToCurrent,
-      unSelectOnClick: pickerConfig.unSelectOnClick,
-      numOfMonthRows: pickerConfig.numOfMonthRows
+      unSelectOnClick: pickerConfig.unSelectOnClick
     };
   }
 
