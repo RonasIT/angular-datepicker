@@ -81,17 +81,17 @@ export class DayCalendarComponent implements OnInit, OnChanges, ControlValueAcce
 
   get currentDisplayMode(): ECalendarMode {
     if (
-      this.currentCalendarMode === this.CalendarMode.Day &&
+      (this.currentCalendarMode === this.CalendarMode.Day) &&
       (this.monthIsSelect || this.config.calendarModeDisplayFirst === 'day')
     ) {
-      return this.CalendarMode.Day
-    }
-
-    if (
+      return this.CalendarMode.Day;
+    } else if (
       (this.currentCalendarMode === this.CalendarMode.Month) ||
       (!this.monthIsSelect && this.config.calendarModeDisplayFirst === 'month')
     ) {
-      return this.CalendarMode.Month
+      return this.CalendarMode.Month;
+    } else {
+      return this.currentCalendarMode;
     }
   }
 
