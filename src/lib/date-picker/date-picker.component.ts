@@ -50,8 +50,8 @@ import {DateValidator} from '../common/types/validator.type';
 import {MonthCalendarComponent} from '../month-calendar/month-calendar.component';
 import {DayTimeCalendarComponent} from '../day-time-calendar/day-time-calendar.component';
 import {INavEvent} from '../common/models/navigation-event.model';
-import {SelectEvent} from '../common/types/selection-evet.enum.';
-import {ISelectionEvent} from '../common/types/selection-evet.model';
+import {SelectEvent} from '../common/types/selection-event.enum';
+import {ISelectionEvent} from '../common/types/selection-event.model';
 
 @Component({
   selector: 'dp-date-picker',
@@ -194,10 +194,10 @@ export class DatePickerComponent implements OnChanges,
   selectEvent = SelectEvent;
 
   _areCalendarsShown: boolean = false;
-
   _selected: Moment[] = [];
-
   _currentDateView: Moment;
+
+  private onOpenDelayTimeoutHandler;
 
   constructor(private readonly dayPickerService: DatePickerService,
               private readonly domHelper: DomHelper,
@@ -377,8 +377,9 @@ export class DatePickerComponent implements OnChanges,
       return;
     }
 
+    clearTimeout(this.onOpenDelayTimeoutHandler);
     this.isFocusedTrigger = true;
-    setTimeout(() => {
+    this.onOpenDelayTimeoutHandler = setTimeout(() => {
       if (!this.areCalendarsShown) {
         this.showCalendars();
       }
@@ -391,6 +392,7 @@ export class DatePickerComponent implements OnChanges,
   }
 
   inputBlurred() {
+    clearTimeout(this.onOpenDelayTimeoutHandler);
     this.onTouchedCallback();
   }
 

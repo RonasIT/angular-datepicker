@@ -17,6 +17,7 @@ export class DatePickerService {
   private defaultConfig: IDatePickerConfigInternal = {
     closeOnSelect: true,
     closeOnSelectDelay: 100,
+    closeOnEnter: true,
     format: 'DD-MM-YYYY',
     openOnFocus: true,
     openOnClick: true,
@@ -83,6 +84,7 @@ export class DatePickerService {
       returnedValueType: pickerConfig.returnedValueType,
       showGoToCurrent: pickerConfig.showGoToCurrent,
       unSelectOnClick: pickerConfig.unSelectOnClick,
+      numOfMonthRows: pickerConfig.numOfMonthRows,
       calendarModeDisplayFirst: pickerConfig.calendarModeDisplayFirst
     };
   }

@@ -10,6 +10,7 @@ export interface IConfig {
   openOnFocus?: boolean;
   openOnClick?: boolean;
   onOpenDelay?: number;
+  closeOnEnter?: boolean;
   disableKeypress?: boolean;
   appendTo?: string | HTMLElement;
   inputElementContainer?: HTMLElement | string;

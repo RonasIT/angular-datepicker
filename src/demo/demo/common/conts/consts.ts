@@ -11,6 +11,7 @@ export const DEF_CONF: IDatePickerConfig = {
   openOnFocus: true,
   openOnClick: true,
   onOpenDelay: 0,
+  closeOnEnter: true,
   weekDayFormat: 'ddd',
   appendTo: document.body,
   showNearMonthDays: true,
@@ -37,5 +38,6 @@ export const DEF_CONF: IDatePickerConfig = {
   returnedValueType: ECalendarValue.String,
   unSelectOnClick: true,
   hideOnOutsideClick: true,
+  numOfMonthRows: 3,
   calendarModeDisplayFirst: 'day'
 };
