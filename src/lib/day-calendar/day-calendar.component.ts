@@ -54,7 +54,6 @@ const moment = momentNs;
 export class DayCalendarComponent implements OnInit, OnChanges, ControlValueAccessor, Validator {
 
   get selected(): Moment[] {
-    console.log(this._selected);
     return this._selected;
   }
 
@@ -225,7 +224,6 @@ export class DayCalendarComponent implements OnInit, OnChanges, ControlValueAcce
 
   dayClicked(day: IDay) {
     this.selectedDate = day.selected;
-    console.log(day)
 
     if (day.selected && !this.componentConfig.unSelectOnClick) {
       return;
@@ -306,7 +304,6 @@ export class DayCalendarComponent implements OnInit, OnChanges, ControlValueAcce
   }
 
   monthSelected(month: IMonth) {
-    console.log(month)
     this.currentDateView = month.date.clone();
     this.currentCalendarMode = ECalendarMode.Day;
     this.monthIsSelect = true;
