@@ -1,11 +1,13 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import * as momentNs from 'moment';
-import {Moment} from 'moment';
-import {WeekDays} from '../common/types/week-days.type';
-import {UtilsService} from '../common/services/utils/utils.service';
-import {IDay} from './day.model';
-import {IDayCalendarConfig, IDayCalendarConfigInternal} from './day-calendar-config.model';
-import {IMonthCalendarConfig} from '../month-calendar/month-calendar-config';
+import { Moment } from 'moment';
+import { WeekDays } from '../common/types/week-days.type';
+import { UtilsService } from '../common/services/utils/utils.service';
+import { IDay } from './day.model';
+import { IDayCalendarConfig, IDayCalendarConfigInternal } from './day-calendar-config.model';
+import { IMonthCalendarConfig } from '../month-calendar/month-calendar-config';
+import { ECalendarMode } from '../common/types/calendar-mode-enum';
+import { CalendarMode } from '../common/types/calendar-mode';
 
 const moment = momentNs;
 
@@ -22,7 +24,8 @@ export class DayCalendarService {
     enableMonthSelector: true,
     locale: moment.locale(),
     dayBtnFormat: 'DD',
-    unSelectOnClick: true
+    unSelectOnClick: true,
+    calendarModeDisplayFirst: 'day'
   };
   private readonly DAYS = ['su', 'mo', 'tu', 'we', 'th', 'fr', 'sa'];
 
@@ -196,6 +199,16 @@ export class DayCalendarService {
     }
 
     return '';
+  }
+
+  getDisplayMode(calendarModeDisplayFirst: CalendarMode, currentMode: ECalendarMode, monthIsSelect: boolean): ECalendarMode {
+    if ((currentMode === ECalendarMode.Day) && (monthIsSelect || calendarModeDisplayFirst === 'day')) {
+      return ECalendarMode.Day;
+    } else if ((currentMode === ECalendarMode.Month) || (!monthIsSelect && calendarModeDisplayFirst === 'month')) {
+      return ECalendarMode.Month;
+    } else {
+      return currentMode;
+    }
   }
 
   private removeNearMonthWeeks(currentMonth: Moment, monthArray: IDay[][]): IDay[][] {

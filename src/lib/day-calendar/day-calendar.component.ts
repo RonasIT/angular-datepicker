@@ -1,6 +1,6 @@
-import {ECalendarValue} from '../common/types/calendar-value-enum';
-import {SingleCalendarValue} from '../common/types/single-calendar-value';
-import {ECalendarMode} from '../common/types/calendar-mode-enum';
+import { ECalendarValue } from '../common/types/calendar-value-enum';
+import { SingleCalendarValue } from '../common/types/single-calendar-value';
+import { ECalendarMode } from '../common/types/calendar-mode-enum';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -16,26 +16,18 @@ import {
   SimpleChanges,
   ViewEncapsulation
 } from '@angular/core';
-import {DayCalendarService} from './day-calendar.service';
+import { DayCalendarService } from './day-calendar.service';
 import * as momentNs from 'moment';
-import {Moment, unitOfTime} from 'moment';
-import {IDayCalendarConfig, IDayCalendarConfigInternal} from './day-calendar-config.model';
-import {IDay} from './day.model';
-import {
-  ControlValueAccessor,
-  FormControl,
-  NG_VALIDATORS,
-  NG_VALUE_ACCESSOR,
-  ValidationErrors,
-  Validator
-} from '@angular/forms';
-import {CalendarValue} from '../common/types/calendar-value';
-import {UtilsService} from '../common/services/utils/utils.service';
-import {IMonthCalendarConfig} from '../month-calendar/month-calendar-config';
-import {IMonth} from '../month-calendar/month.model';
-import {DateValidator} from '../common/types/validator.type';
-import {INavEvent} from '../common/models/navigation-event.model';
-import { CalendarMode } from '../common/types/calendar-mode';
+import { Moment, unitOfTime } from 'moment';
+import { IDayCalendarConfig, IDayCalendarConfigInternal } from './day-calendar-config.model';
+import { IDay } from './day.model';
+import { ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
+import { CalendarValue } from '../common/types/calendar-value';
+import { UtilsService } from '../common/services/utils/utils.service';
+import { IMonthCalendarConfig } from '../month-calendar/month-calendar-config';
+import { IMonth } from '../month-calendar/month.model';
+import { DateValidator } from '../common/types/validator.type';
+import { INavEvent } from '../common/models/navigation-event.model';
 
 const moment = momentNs;
 
@@ -62,6 +54,7 @@ const moment = momentNs;
 export class DayCalendarComponent implements OnInit, OnChanges, ControlValueAccessor, Validator {
 
   get selected(): Moment[] {
+    console.log(this._selected);
     return this._selected;
   }
 
@@ -80,19 +73,11 @@ export class DayCalendarComponent implements OnInit, OnChanges, ControlValueAcce
   }
 
   get currentDisplayMode(): ECalendarMode {
-    if (
-      (this.currentCalendarMode === this.CalendarMode.Day) &&
-      (this.monthIsSelect || this.config.calendarModeDisplayFirst === 'day')
-    ) {
-      return this.CalendarMode.Day;
-    } else if (
-      (this.currentCalendarMode === this.CalendarMode.Month) ||
-      (!this.monthIsSelect && this.config.calendarModeDisplayFirst === 'month')
-    ) {
-      return this.CalendarMode.Month;
-    } else {
-      return this.currentCalendarMode;
-    }
+    return this.dayCalendarService.getDisplayMode(
+      this.config.calendarModeDisplayFirst,
+      this.currentCalendarMode,
+      this.monthIsSelect
+    );
   }
 
   set currentDateView(current: Moment) {
@@ -127,6 +112,7 @@ export class DayCalendarComponent implements OnInit, OnChanges, ControlValueAcce
   currentCalendarMode: ECalendarMode = ECalendarMode.Day;
   monthCalendarConfig: IMonthCalendarConfig;
   monthIsSelect: boolean = false;
+  selectedDate: boolean;
   _shouldShowCurrent: boolean = true;
   navLabel: string;
   showLeftNav: boolean;
@@ -168,10 +154,6 @@ export class DayCalendarComponent implements OnInit, OnChanges, ControlValueAcce
     this.inputValueType = this.utilsService.getInputType(this.inputValue, this.componentConfig.allowMultiSelect);
     this.monthCalendarConfig = this.dayCalendarService.getMonthCalendarConfig(this.componentConfig);
     this._shouldShowCurrent = this.shouldShowCurrent();
-
-    if (this.config.calendarModeDisplayFirst === 'day') {
-      this.monthIsSelect = true;
-    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -242,6 +224,9 @@ export class DayCalendarComponent implements OnInit, OnChanges, ControlValueAcce
   }
 
   dayClicked(day: IDay) {
+    this.selectedDate = day.selected;
+    console.log(day)
+
     if (day.selected && !this.componentConfig.unSelectOnClick) {
       return;
     }
@@ -321,6 +306,7 @@ export class DayCalendarComponent implements OnInit, OnChanges, ControlValueAcce
   }
 
   monthSelected(month: IMonth) {
+    console.log(month)
     this.currentDateView = month.date.clone();
     this.currentCalendarMode = ECalendarMode.Day;
     this.monthIsSelect = true;

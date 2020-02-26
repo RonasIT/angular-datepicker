@@ -45,7 +45,7 @@
     (onRightNav)="onMonthCalendarRightClick($event)"
     (onRightSecondaryNav)="onMonthCalendarSecondaryRightClick($event)"
     (onSelect)="monthSelected($event)"
-    *ngIf="currentDisplayMode ===  CalendarMode.Month"
+    *ngIf="currentDisplayMode === CalendarMode.Month"
     [config]="monthCalendarConfig"
     [displayDate]="_currentDateView"
     [ngModel]="_selected"
