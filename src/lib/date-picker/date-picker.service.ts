@@ -84,6 +84,7 @@ export class DatePickerService {
       returnedValueType: pickerConfig.returnedValueType,
       showGoToCurrent: pickerConfig.showGoToCurrent,
       unSelectOnClick: pickerConfig.unSelectOnClick,
+      numOfMonthRows: pickerConfig.numOfMonthRows,
       calendarModeDisplayFirst: pickerConfig.calendarModeDisplayFirst
     };
   }
